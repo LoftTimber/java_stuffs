@@ -15,18 +15,36 @@ public class SelfDivisor
      */
     public static boolean isSelfDivisor(int number)
     {
-        
+        String num = number + "" ;
+        int[] n = new int[num.length()] ;
+        for (int i=0 ; i<num.length() ; i++) {
+            int trunk = number/((int) (Math.pow(10, num.length()-1-i))) ;
+            for (int k=0 ; k<i ; k++) {
+                trunk -= n[k] * ((int) (Math.pow(10, i-k))) ;
+            }
+            n[i] = trunk ;
+        }
+        for (int i=0 ; i<num.length() ; i++) {
+            if (n[i] == 0) {
+                return false ;
+            }
+            if ((number%n[i]) != 0) {
+                return false ;
+            }
+        }
+        return true ;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public static int[] firstNumSelfDivisors(int start, int num)
     {
-        // put your code here
-        return x + y;
+        int[] divisors = new int[num] ;
+        int count = 0 ;
+        for (int i=0 ; num>count ; i++) {
+            if (isSelfDivisor(start+i)) {
+                divisors[count] += start+i ;
+                count += 1 ;
+            }
+        }
+        return divisors;
     }
 }
