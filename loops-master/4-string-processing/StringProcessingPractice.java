@@ -130,9 +130,18 @@
     {
         String result = "" ;
         for (int i=0 ; i<str.length() ; i++) {
-            if (allowed.indexOf(str.substring(i)) > 0) {
-                result += str.substring(i) ;****************
+            if (allowed.indexOf(str.substring(i, i+1)) >= 0) {
+                result += str.substring(i, i+1) ;
             }
+        }
+        return result ;
+    }
+    
+    public static String trimmedRepeater(String str)
+    {
+        String result = "" ;
+        for (int i=0 ; i<str.length() ; i++) {
+            result += str.substring(i) ;
         }
         return result ;
     }
@@ -144,6 +153,7 @@
         System.out.println(letterSwapper("loops")) ;
         System.out.println(caseComparer("Qqq")) ;
         System.out.println(charFilter("computers", "osmgur")) ;
+        System.out.println(trimmedRepeater("apple")) ;
         
         // Test your methods here. Be sure that each method is tested against all special cases.
     }
